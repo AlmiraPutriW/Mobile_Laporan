@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    android:background="#8863A4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="243dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:letterSpacing="0.08"
+            android:lineSpacingExtra="4dp"
+            android:padding="6dp"
+            android:shadowColor="#66000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
+            android:text="Selamat Datang di SIPRASA"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <!-- Card Container -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            android:layout_marginBottom="24dp">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:padding="12dp"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false"
+                android:rowCount="3"
+                android:rowOrderPreserved="false">
+
+                <!-- Item 1 -->
+                <LinearLayout
+                    android:id="@+id/menu_create"
+                    style="@style/DashboardMenuItem"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item_purple_light">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/ic_create"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="TAMBAH LAPORAN"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Item 2 -->
+                <LinearLayout
+                    android:id="@+id/Laporan"
+                    style="@style/DashboardMenuItem"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item_purple_light">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/ic_report"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="LAPORAN"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Item 3 -->
+                <LinearLayout
+                    android:id="@+id/menu_info"
+                    style="@style/DashboardMenuItem"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item_purple_light">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/ic_info"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textAlignment="center"
+                        android:text="INFORMASI PENGGUNAAN"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Item 4 -->
+                <LinearLayout
+                    android:id="@+id/menu_keunggulan"
+                    style="@style/DashboardMenuItem"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item_purple_light">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/ic_keunggulan"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="KEUNGGULAN"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Item 5 -->
+                <LinearLayout
+                    android:id="@+id/menu_about"
+                    style="@style/DashboardMenuItem"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item_purple_light">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/ic_about"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="TENTANG KAMI"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Item 6 -->
+                <LinearLayout
+                    android:id="@+id/menu_profile"
+                    style="@style/DashboardMenuItem"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item_purple_light">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/ic_account"
+                        app:tint="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="PROFILE"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </GridLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Tombol Logout -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="LOGOUT"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#F86B6B"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
