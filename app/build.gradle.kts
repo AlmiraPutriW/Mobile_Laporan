@@ -30,6 +30,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 tasks.withType<JavaCompile> {
     options.compilerArgs.add("-Xlint:deprecation")
@@ -51,9 +54,11 @@ tasks.withType<JavaCompile> {
 // Retrofit dan GSON
         implementation("com.squareup.retrofit2:retrofit:2.9.0")
         implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-        implementation("com.google.code.gson:gson:2.10.1") // ⬅️ Pastikan ada ini
+        implementation("com.google.code.gson:gson:2.10.1")
 
         implementation("com.github.bumptech.glide:glide:4.15.1")
         annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+        implementation("androidx.cardview:cardview:1.0.0")
+        implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     }

@@ -3,6 +3,7 @@ package com.example.mobilelaporanapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String PREF_NAME = "MyAppPrefs";
     private static final String TOKEN_KEY = "token";
+    private static final String USER_ID_KEY = "user_id";
+    private static final String USER_NAME_KEY = "name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+            Intent intent = new Intent(LoginActivity.this, DashboardFragment.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
@@ -82,33 +85,37 @@ public class LoginActivity extends AppCompatActivity {
                 response -> {
                     progressBar.setVisibility(View.GONE);
                     try {
+                        Log.d("LoginActivity", "Response: " + response.toString());
+
                         String token = null;
+                        String userId = null;
+                        String name = null; // Tidak ada di response
+
                         if (response.has("token")) {
                             token = response.getString("token");
-                        } else if (response.has("data") && response.getJSONObject("data").has("token")) {
-                            token = response.getJSONObject("data").getString("token");
                         }
+
+                        if (response.has("userId")) {
+                            userId = response.getString("userId");
+                        } else if (response.has("data")) {
+                            JSONObject data = response.getJSONObject("data");
+                            if (data.has("userId")) {
+                                userId = data.getString("userId");
+                            }
+                        }
+
+                        Log.d("LoginActivity", "token=" + token + ", userId=" + userId + ", name=" + name);
 
                         if (token != null) {
                             SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString(TOKEN_KEY, token);
-
-                            // Simpan nama pengguna jika tersedia
-                            if (response.has("data") && response.getJSONObject("data").has("user")) {
-                                JSONObject user = response.getJSONObject("data").getJSONObject("user");
-                                editor.putString("name", user.optString("name", ""));
-                            }
-
-                            // Gunakan commit agar token benar-benar tersimpan sebelum lanjut
-                            editor.commit();
-
-                            // Optional: Debugging token tersimpan
-                            // Toast.makeText(this, "Token tersimpan: " + token, Toast.LENGTH_LONG).show();
+                            editor.putString(USER_ID_KEY, userId);
+                            editor.putString(USER_NAME_KEY, name); // tetap disimpan meskipun null
+                            editor.apply();
 
                             Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(this, MenuActivity.class);
-                            startActivity(intent);
+                            startActivity(new Intent(this, BaseActivity.class));
                             finish();
                         } else {
                             Toast.makeText(this, "Login gagal: Token tidak ditemukan", Toast.LENGTH_SHORT).show();
@@ -128,5 +135,4 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
     }
-
 }

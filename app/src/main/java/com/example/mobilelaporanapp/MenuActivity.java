@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
 
         // Navigasi menu
         menuCreate.setOnClickListener(v -> {
-            Intent intent = new Intent(MenuActivity.this, CreateReportActivity.class);
+            Intent intent = new Intent(MenuActivity.this, ReportFragment.class);
             startActivity(intent);
         });
 
@@ -110,7 +110,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void logoutAndGoToDashboard() {
-        Intent intent = new Intent(MenuActivity.this, DashboardActivity.class);
+        Intent intent = new Intent(MenuActivity.this, DashboardFragment.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

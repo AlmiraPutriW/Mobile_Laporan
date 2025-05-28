@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5"
     android:padding="16dp"
-    tools:context=".ReportFormActivity">
+    tools:context=".ReportFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,6 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-
                 <!-- Nama Pelapor -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -54,6 +53,7 @@
                     android:id="@+id/etReporterName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/edittext_background"
                     android:hint="Masukkan Nama Pelapor"
@@ -75,9 +75,10 @@
                     android:id="@+id/etReportDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/edittext_background"
-                    android:hint="dd/mm/yyyy"
+                    android:hint="dd-mm-yyyy"
                     android:inputType="date"
                     android:padding="12dp"
                     android:textSize="16sp" />
@@ -96,6 +97,7 @@
                     android:id="@+id/etReportTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/edittext_background"
                     android:hint="Masukkan Judul Laporan"
@@ -113,16 +115,16 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/etReportCategory"
+                <Spinner
+                    android:id="@+id/spinnerCategory"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/edittext_background"
-                    android:hint="Pilih Kategori"
-                    android:inputType="text"
-                    android:padding="12dp"
-                    android:textSize="16sp" />
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    />
 
                 <!-- Lokasi -->
                 <TextView
@@ -138,6 +140,7 @@
                     android:id="@+id/etLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/edittext_background"
                     android:hint="Masukkan Lokasi"

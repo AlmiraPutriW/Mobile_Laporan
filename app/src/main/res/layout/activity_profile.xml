@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F9FAFB"
     android:padding="16dp"
     tools:context=".ProfileActivity">
 
@@ -15,209 +16,259 @@
         <!-- Foto Profil -->
         <ImageView
             android:id="@+id/imageProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_about" />
+            android:src="@drawable/ic_about"
+            android:background="@drawable/profile_circle_bg" />
 
-        <!-- Header -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:textSize="24sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="12dp" />
-
+        <!-- Nama dan Judul -->
         <TextView
             android:id="@+id/textHeaderName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama Pengguna"
-            android:textSize="20sp"
-            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textColor="#222222"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="8dp" />
 
-        <!-- Menu Options -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textSize="16sp"
+            android:textColor="#777777"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Header -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Informasi Akun"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Nama -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_name"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#444444" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading..."
+                    android:textSize="15sp"
+                    android:textColor="#555555" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="#EEEEEE" />
+
+                <!-- Email -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_email"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#444444" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading..."
+                    android:textSize="15sp"
+                    android:textColor="#1E88E5" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="#EEEEEE" />
+
+                <!-- Telepon -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_phone"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Telepon"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#444444" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textTelepon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading..."
+                    android:textSize="15sp"
+                    android:textColor="#555555" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Menu Aksi -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="8dp"
             android:layout_marginBottom="24dp">
 
-            <!-- Ubah Profil -->
+            <!-- Card menu item -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:padding="14dp"
+                android:background="@drawable/menu_item_bg"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
-                android:padding="12dp"
-                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_account"
+                    android:layout_marginEnd="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ubah Profil"
                     android:textSize="16sp"
-                    android:textColor="#000000" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_about" />
+                    android:textColor="#212121"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#F0F0F0" />
-
-            <!-- Ubah Kata Sandi -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:padding="14dp"
+                android:background="@drawable/menu_item_bg"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
-                android:padding="12dp"
-                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_password"
+                    android:layout_marginEnd="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ubah Kata Sandi"
                     android:textSize="16sp"
-                    android:textColor="#000000" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_about" />
+                    android:textColor="#212121"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#F0F0F0" />
-
-            <!-- Logout -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:padding="14dp"
+                android:background="@drawable/menu_item_bg"
+                android:elevation="4dp"
+                android:layout_marginBottom="12dp"
                 android:gravity="center_vertical"
-                android:padding="12dp"
-                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_logout"
+                    android:layout_marginEnd="12dp"
+                    app:tint="#B71C1C" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Keluar"
                     android:textSize="16sp"
-                    android:textColor="#000000" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_about" />
+                    android:textColor="#B71C1C"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-
-        <!-- Garis Pemisah -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E0E0E0"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Informasi Pengguna -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Informasi Pengguna"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Nama -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nama"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/textNama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Loading..."
-            android:textSize="16sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Email -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/textEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Loading..."
-            android:textSize="16sp"
-            android:textColor="#2196F3"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Telepon -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nomor Telepon"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/textTelepon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Loading..."
-            android:textSize="16sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="24dp" />
     </LinearLayout>
 </ScrollView>

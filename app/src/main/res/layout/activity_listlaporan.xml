@@ -1,0 +1,120 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <!-- Search dan Buat Laporan -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp">
+
+        <EditText
+            android:id="@+id/etSearchReport"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Cari Laporan..."
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:background="@drawable/edittext_background" />
+
+        <Button
+            android:id="@+id/btnCreateReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Buat Laporan"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_rounded_primary" />
+    </LinearLayout>
+
+    <!-- Filter Status dan Kategori -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginBottom="24dp">
+
+        <!-- Status -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <RadioGroup
+                android:id="@+id/rgStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:background="@drawable/section_background">
+
+                <RadioButton android:id="@+id/rbStatusAll" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Semua" android:textSize="14sp" android:checked="true" />
+                <RadioButton android:id="@+id/rbStatusSelesai" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Selesai" android:textSize="14sp" />
+                <RadioButton android:id="@+id/rbStatusDiproses" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Diproses" android:textSize="14sp" />
+                <RadioButton android:id="@+id/rbStatusBelumDiproses" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Belum Diproses" android:textSize="14sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- Kategori -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kategori"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <RadioGroup
+                android:id="@+id/rgKategori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:background="@drawable/section_background">
+
+                <RadioButton android:id="@+id/rbKategoriAll" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Semua" android:textSize="14sp" android:checked="true" />
+                <RadioButton android:id="@+id/rbKategoriJalan" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Jalan" android:textSize="14sp" />
+                <RadioButton android:id="@+id/rbKategoriJembatan" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Jembatan" android:textSize="14sp" />
+                <RadioButton android:id="@+id/rbKategoriLaluLintas" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lalu Lintas" android:textSize="14sp" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReports"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+</LinearLayout>
+</androidx.core.widget.NestedScrollView>

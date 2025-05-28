@@ -26,4 +26,8 @@
     <string name="feature_monitor">Pantau Progres</string>
     <string name="feature_report">Laporkan Cepat</string>
     <string name="feature_support">Dukung Perbaikan</string>
+
+    <string name="gambar_laporan">Gambar laporan</string>
+
+
 </resources>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,12 +27,15 @@
         </activity>
 
         <!-- Activity lain tanpa intent-filter launcher -->
-        <activity android:name=".DashboardActivity" android:exported="true" />
+        <activity android:name=".DashboardFragment" android:exported="true"/>
         <activity android:name=".LoginActivity" android:exported="true" />
         <activity android:name=".MenuActivity" android:exported="true" />
         <activity android:name=".RegisterActivity" android:exported="true" />
         <activity android:name=".ProfileActivity" android:exported="true" />
-        <activity android:name=".ReportActivity" android:exported="true" />
+        <activity android:name=".ReportFragment" android:exported="true"/>
+        <activity android:name=".ReportListActivity" android:exported="true" />
+        <activity android:name=".BaseActivity" android:exported="true" />
+        <activity android:name=".DashboardActivity" android:exported="true" />
         <!-- Service audio -->
         <service android:name=".AudioService" />
     </application>
