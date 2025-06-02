@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, DashboardFragment.class);
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });

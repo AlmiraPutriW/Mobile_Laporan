@@ -44,7 +44,7 @@ public class DetailUserFragment extends Fragment {
 
     private ImageView ivGambar;
     private TextView tvJudul, tvTanggal, tvLokasi, tvKategori, tvStatus, tvDeskripsi;
-    private Button btnEdit;
+    private Button btnEdit, btnDelete;
 
     private ApiService apiService;
     private String token;
@@ -77,19 +77,24 @@ public class DetailUserFragment extends Fragment {
         btnEdit.setOnClickListener(v -> {
             if (laporanId != null) {
                 Log.d(TAG, "Mengirim laporanId ke EditReportFragment: " + laporanId);
+                EditReportFragment editFragment = EditReportFragment.newInstance(laporanId);
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, editFragment)
+                        .addToBackStack(null)
+                        .commit();
             } else {
                 Log.e(TAG, "laporanId NULL saat klik edit");
             }
-
-            EditReportFragment editFragment = EditReportFragment.newInstance(laporanId);
-
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, editFragment)
-                    .addToBackStack(null)
-                    .commit();
         });
 
+        btnDelete.setOnClickListener(v -> {
+            if (laporanId != null) {
+                deleteLaporanById(laporanId);
+            } else {
+                Toast.makeText(requireContext(), "ID laporan tidak valid", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initViews(View view) {
@@ -101,6 +106,7 @@ public class DetailUserFragment extends Fragment {
         tvStatus = view.findViewById(R.id.tvStatus);
         tvDeskripsi = view.findViewById(R.id.tvDeskripsi);
         btnEdit = view.findViewById(R.id.btnEdit);
+        btnDelete = view.findViewById(R.id.btnDelete);
     }
 
     private void getLaporanIdFromArguments() {
@@ -150,18 +156,13 @@ public class DetailUserFragment extends Fragment {
                                    @NonNull Response<ReportDetailResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ReportDetailResponse responseBody = response.body();
-
-                    Log.d(TAG, "Message dari API: " + responseBody.getMessage());
-
                     if (responseBody.getLaporan() != null) {
                         tampilkanDetail(responseBody.getLaporan());
                         Log.d(TAG, "Detail laporan berhasil dimuat");
                     } else {
                         Toast.makeText(requireContext(), "Data laporan tidak ditemukan", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "laporan null");
                     }
                 } else {
-                    Log.e(TAG, "Response gagal: " + response.message());
                     Toast.makeText(requireContext(), "Gagal memuat data", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -174,22 +175,29 @@ public class DetailUserFragment extends Fragment {
         });
     }
 
-    private String formatTanggal(String tanggal) {
-        if (tanggal == null || tanggal.isEmpty()) return "-";
-        try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
-            Date date = inputFormat.parse(tanggal);
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
-            return date != null ? outputFormat.format(date) : tanggal;
-        } catch (ParseException e) {
-            Log.e(TAG, "Format tanggal error", e);
-            return tanggal;
-        }
+    private void deleteLaporanById(String id) {
+        apiService.deleteReport(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(requireContext(), "Laporan berhasil dihapus", Toast.LENGTH_SHORT).show();
+                    requireActivity().getSupportFragmentManager().popBackStack();
+                } else {
+                    Toast.makeText(requireContext(), "Gagal menghapus laporan", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Toast.makeText(requireContext(), "Terjadi kesalahan saat menghapus laporan", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error hapus laporan: " + t.getMessage());
+            }
+        });
     }
 
     private void tampilkanDetail(Report report) {
         tvJudul.setText(nonNullOrDash(report.getJudul()));
-        tvTanggal.setText(nonNullOrDash(report.getTanggal())); // atau formatTanggal(report.getCreatedAt())
+        tvTanggal.setText(nonNullOrDash(report.getTanggal()));
         tvLokasi.setText(nonNullOrDash(report.getLokasi()));
         tvKategori.setText(nonNullOrDash(report.getKategori()));
         tvStatus.setText(nonNullOrDash(report.getStatus()));

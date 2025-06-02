@@ -110,7 +110,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void logoutAndGoToDashboard() {
-        Intent intent = new Intent(MenuActivity.this, DashboardFragment.class);
+        Intent intent = new Intent(MenuActivity.this, HomeFragment.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

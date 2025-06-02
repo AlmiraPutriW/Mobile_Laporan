@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="Selamat datang!"
                 android:textSize="24sp"
-                android:textColor="#AB04E7"
+                android:textColor="#8863A4"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"
                 android:paddingTop="8dp"
@@ -98,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:text="Masuk"
-                android:backgroundTint="#64018C"
+                android:backgroundTint="#8863A4"
                 android:textColor="#FFFFFF"
                 android:textAllCaps="false"
                 android:layout_marginBottom="24dp" />
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:text="Kembali"
-                android:backgroundTint="#F44336"
+                android:backgroundTint="#EB5F55"
                 android:textColor="#FFFFFF"
                 android:textAllCaps="false"
                 android:layout_marginBottom="24dp" />

@@ -1,7 +1,7 @@
 <resources>
     <!-- Teks Umum -->
     <string name="app_name">Lapor</string>
-
+    <string name="selamatDatang_text">Selamat Datang Di SIPRASA</string>
     <!-- Hero Section -->
     <string name="hero_text">Lapor Kerusakan,
         Jaga Kenyamanan Kota Bersama!</string>

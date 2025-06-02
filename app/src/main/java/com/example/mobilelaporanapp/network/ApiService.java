@@ -10,6 +10,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -72,5 +73,7 @@ public interface ApiService {
             @Part("deskripsi") RequestBody deskripsi
     );
 
+    @DELETE("api/v1/laporan/delete/{id}")
+    Call<Void> deleteReport(@Path("id") String id);
 
 }

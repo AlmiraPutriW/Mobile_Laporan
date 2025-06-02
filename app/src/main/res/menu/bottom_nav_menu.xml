@@ -16,9 +16,9 @@
         android:title="Tambah" />
 
     <item
-        android:id="@+id/nav_location"
-        android:icon="@drawable/ic_loc"
-        android:title="Lokasi" />
+        android:id="@+id/nav_reportuser"
+        android:icon="@drawable/ic_userreport"
+        android:title="Report User" />
 
     <item
         android:id="@+id/nav_profile"

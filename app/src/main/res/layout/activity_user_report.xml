@@ -171,10 +171,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit Laporan"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#A588D0"
             android:textColor="#FFFFFF"
             android:padding="12dp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hapus Laporan"
+            android:backgroundTint="#D04848"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+
     </LinearLayout>
 </ScrollView>

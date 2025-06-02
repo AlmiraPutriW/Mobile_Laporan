@@ -61,7 +61,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="16dp"
-                android:text="15:00"
                 android:textColor="@color/white"
                 android:textSize="14sp"/>
         </RelativeLayout>

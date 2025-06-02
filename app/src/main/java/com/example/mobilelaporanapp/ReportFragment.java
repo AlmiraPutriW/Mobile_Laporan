@@ -1,10 +1,12 @@
 package com.example.mobilelaporanapp;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ReportFragment extends Fragment {
@@ -54,7 +57,7 @@ public class ReportFragment extends Fragment {
         btnSubmitReport = view.findViewById(R.id.btnSubmitReport);
         btnCancel = view.findViewById(R.id.btnCancel);
 
-        // Request permission jika SDK >= Marshmallow
+        // Request permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -70,10 +73,11 @@ public class ReportFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
-        // Listener tombol dan textview
+        // Listener
         tvUploadPhoto.setOnClickListener(v -> openGallery());
         btnSubmitReport.setOnClickListener(v -> submitReport());
         btnCancel.setOnClickListener(v -> requireActivity().onBackPressed());
+        etReportDate.setOnClickListener(v -> showDatePicker());
 
         return view;
     }
@@ -100,9 +104,24 @@ public class ReportFragment extends Fragment {
             } else if (data.getData() != null) {
                 selectedImageUris.add(data.getData());
             }
-
             tvUploadPhoto.setText("Total foto terpilih: " + selectedImageUris.size());
         }
+    }
+
+    private void showDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                requireContext(),
+                (view, year, month, dayOfMonth) -> {
+                    calendar.set(year, month, dayOfMonth);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    etReportDate.setText(sdf.format(calendar.getTime()));
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
     }
 
     private void submitReport() {
@@ -140,12 +159,16 @@ public class ReportFragment extends Fragment {
                     progressDialog.dismiss();
                     Toast.makeText(requireContext(), "Laporan berhasil dikirim", Toast.LENGTH_SHORT).show();
 
-                    // Ganti fragment ke ReportListFragment setelah submit berhasil
-                    Fragment reportListFragment = new ReportListFragment();
+                    // >>> Tambahkan suara dengan volume maksimal
+                    MediaPlayer mediaPlayer = MediaPlayer.create(requireContext(), R.raw.terimakasih);
+                    mediaPlayer.setVolume(1.0f, 1.0f); // Pastikan volume maksimal
+                    mediaPlayer.start();
+
+                    // Arahkan ke halaman daftar laporan
                     requireActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container, reportListFragment) // Ganti dengan ID container fragment kamu
-                            .addToBackStack(null) // Optional, bisa dihapus kalau gak mau kembali ke ReportFragment dengan back
+                            .replace(R.id.fragment_container, new ReportListFragment())
+                            .addToBackStack(null)
                             .commit();
                 },
                 error -> {
@@ -188,8 +211,8 @@ public class ReportFragment extends Fragment {
                     try {
                         InputStream inputStream = requireContext().getContentResolver().openInputStream(uri);
                         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-                        int nRead;
                         byte[] data = new byte[16384];
+                        int nRead;
                         while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
                             buffer.write(data, 0, nRead);
                         }
@@ -206,6 +229,7 @@ public class ReportFragment extends Fragment {
                 return fileData;
             }
         };
+
         Volley.newRequestQueue(requireContext()).add(multipartRequest);
     }
 }

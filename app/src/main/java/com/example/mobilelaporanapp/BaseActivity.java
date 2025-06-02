@@ -30,8 +30,7 @@ public class BaseActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
         tvTime = findViewById(R.id.tv_time);
         bottomNavigation = findViewById(R.id.bottom_navigation);
-
-        tvTime.setText("15:00");
+        
 
         // Set warna tombol back ke purple_500
         btnBack.setColorFilter(ContextCompat.getColor(this, R.color.purple_500));
@@ -41,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
 
         // Tampilkan fragment awal (Dashboard) jika activity baru dimulai
         if (savedInstanceState == null) {
-            loadFragment(new DashboardFragment(), false); // tidak masuk ke backstack
+            loadFragment(new HomeFragment(), false); // tidak masuk ke backstack
             bottomNavigation.setSelectedItemId(R.id.nav_home);
         }
 
@@ -50,19 +49,19 @@ public class BaseActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
 
             if (item.getItemId() == R.id.nav_home) {
-                selectedFragment = new DashboardFragment();
+                selectedFragment = new HomeFragment();
             } else if (item.getItemId() == R.id.nav_report) {
                 selectedFragment = new ReportListFragment();
             } else if (item.getItemId() == R.id.nav_create) {
                 selectedFragment = new ReportFragment();
-            } else if (item.getItemId() == R.id.nav_location) {
+            } else if (item.getItemId() == R.id.nav_reportuser) {
                 selectedFragment = new ReportUserFragment();
             } else if (item.getItemId() == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
             }
 
             if (selectedFragment != null) {
-                boolean addToBackStack = !(selectedFragment instanceof DashboardFragment);
+                boolean addToBackStack = !(selectedFragment instanceof HomeFragment);
                 loadFragment(selectedFragment, addToBackStack);
                 return true;
             }
@@ -85,7 +84,7 @@ public class BaseActivity extends AppCompatActivity {
         btnBack.setColorFilter(ContextCompat.getColor(this, R.color.purple_500));
 
         // Sembunyikan tombol back hanya di halaman Dashboard
-        btnBack.setVisibility(fragment instanceof DashboardFragment ? View.GONE : View.VISIBLE);
+        btnBack.setVisibility(fragment instanceof HomeFragment ? View.GONE : View.VISIBLE);
     }
 
     @Override

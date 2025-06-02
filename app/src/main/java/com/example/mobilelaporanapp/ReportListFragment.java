@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -220,10 +221,15 @@ public class ReportListFragment extends Fragment {
 
     private void setupCreateButton() {
         btnCreateReport.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), ReportFragment.class);
-            startActivity(intent);
+            FragmentTransaction transaction = requireActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction();
+            transaction.replace(R.id.fragment_container, new ReportFragment()); // ganti R.id.fragment_container dengan ID dari FragmentContainerView kamu
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
     }
+
 
     private void filterReports() {
         String query = etSearchReport.getText().toString().toLowerCase().trim();

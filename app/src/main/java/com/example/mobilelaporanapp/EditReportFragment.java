@@ -1,6 +1,7 @@
 package com.example.mobilelaporanapp;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -32,6 +34,9 @@ import com.example.mobilelaporanapp.network.ApiService;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -54,6 +59,7 @@ public class EditReportFragment extends Fragment {
 
     private Uri selectedImageUri = null;
     private File selectedImageFile = null;
+    private Calendar calendar;
 
     public EditReportFragment() {}
 
@@ -72,6 +78,7 @@ public class EditReportFragment extends Fragment {
             reportId = getArguments().getString(ARG_REPORT_ID);
             Log.d(TAG, "onCreate - reportId: " + reportId);
         }
+        calendar = Calendar.getInstance();
     }
 
     @Nullable
@@ -90,6 +97,7 @@ public class EditReportFragment extends Fragment {
         ivPhotoPreview = view.findViewById(R.id.ivUploadPhoto);
 
         setupCategorySpinner();
+        setupDatePicker();
 
         tvUploadPhoto.setOnClickListener(v -> openImagePicker());
 
@@ -110,6 +118,40 @@ public class EditReportFragment extends Fragment {
                 android.R.layout.simple_spinner_item, kategoriList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
+    }
+
+    private void setupDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDateLabel();
+            }
+        };
+
+        etReportDate.setOnClickListener(v -> {
+            new DatePickerDialog(requireContext(), dateSetListener,
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        etReportDate.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                new DatePickerDialog(requireContext(), dateSetListener,
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+    }
+
+    private void updateDateLabel() {
+        String dateFormat = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
+        etReportDate.setText(sdf.format(calendar.getTime()));
     }
 
     private void openImagePicker() {
@@ -216,6 +258,14 @@ public class EditReportFragment extends Fragment {
         etReportTitle.setText(report.getJudul());
         etLocation.setText(report.getLokasi());
         etProblemDescription.setText(report.getDeskripsi());
+
+        // Set calendar date from report date
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            calendar.setTime(sdf.parse(report.getTanggal()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerCategory.getAdapter();
         int position = adapter.getPosition(report.getKategori());
